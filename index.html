@@ -96,10 +96,8 @@
 
         /* Card Selection State */
         .flow-card {
-            /* Base styles for all cards */
             background-color: white;
             border: 1px solid #e5e7eb;
-            /* default border */
             transition: all 0.2s ease-in-out;
         }
 
@@ -200,7 +198,7 @@
             </section>
 
             <!-- --- Screen 2: Ride Details Screen --- -->
-            <section id="ride-details-screen" class="flow-screen space-y-6 pt-4">
+            <section id="ride-details-screen" class="flow-screen invisible space-y-6 pt-4">
                 <div class="flex items-center justify-between mb-4">
                     <h1 class="text-header font-bold font-header">Ride Details</h1>
                     <a href="#" id="back-btn-2"
@@ -287,7 +285,7 @@
             </section>
 
             <!-- --- Screen 3: Delivery Speed Screen --- -->
-            <section id="delivery-speed-screen" class="flow-screen space-y-6 pt-4">
+            <section id="delivery-speed-screen" class="flow-screen space-y-6 pt-4 invisible">
                 <div class="flex items-center justify-between mb-4">
                     <h1 class="text-header font-bold font-header">Delivery</h1>
                     <a href="#" id="back-btn-3"
@@ -342,7 +340,7 @@
             </section>
 
             <!-- --- Screen 4: "What Are You Sending?" Screen (Item Selection) --- -->
-            <section id="what-are-you-sending-screen" class="flow-screen space-y-6 pt-4">
+            <section id="what-are-you-sending-screen" class="flow-screen space-y-6 pt-4 invisible">
                 <!-- Header with Back Button -->
                 <div class="flex items-center justify-between mb-4">
                     <h1 class="text-header font-bold font-header">What are you sending?</h1>
@@ -383,7 +381,9 @@
                         </div>
                         <div class="flex justify-between items-center w-full">
                             <span class="text-lg font-medium font-header">Foodstuff</span>
-                            <div class="w-6 h-6 rounded-full border-2 border-gray-400 bg-white checkmark flex items-center justify-center"></div>
+                            <div
+                                class="w-6 h-6 rounded-full border-2 border-gray-400 bg-white checkmark flex items-center justify-center">
+                            </div>
                         </div>
                     </div>
 
@@ -395,7 +395,9 @@
                         </div>
                         <div class="flex justify-between items-center w-full">
                             <span class="text-lg font-medium font-header">Document</span>
-                            <div class="w-6 h-6 rounded-full border-2 border-gray-400 bg-white checkmark flex items-center justify-center"></div>
+                            <div
+                                class="w-6 h-6 rounded-full border-2 border-gray-400 bg-white checkmark flex items-center justify-center">
+                            </div>
                         </div>
                     </div>
 
@@ -408,7 +410,9 @@
                         </div>
                         <div class="flex justify-between items-center w-full">
                             <span class="text-lg font-medium font-header">Others</span>
-                            <div class="w-6 h-6 rounded-full border-2 border-gray-400 bg-white checkmark flex items-center justify-center"></div>
+                            <div
+                                class="w-6 h-6 rounded-full border-2 border-gray-400 bg-white checkmark flex items-center justify-center">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -431,8 +435,7 @@
             </section>
 
             <!-- --- Screen 5: Location Selection Screen --- -->
-            <section id="location-selection-screen" class="flow-screen space-y-6 pt-4">
-                <!-- Header with Back Button -->
+            <section id="location-selection-screen" class="flow-screen space-y-6 pt-4 invisible">
                 <div class="flex items-center justify-between mb-4">
                     <h1 class="text-header font-bold font-header">Location</h1>
                     <a href="#" id="back-btn-5"
@@ -494,7 +497,6 @@
                     </div>
                 </div>
 
-                <!-- CTA Button -->
                 <button id="continue-btn-5"
                     class="w-full py-4 text-lg font-semibold rounded-full btn-disabled bg-primary text-white mt-8 shadow-md"
                     disabled>
@@ -504,11 +506,8 @@
 
 
             <section class="flow-screen space-y-6 pt-4">
-
-                <!-- image -->
                 <div class="relative w-full h-48">
-                    <img src="/images/review.png" alt="Ride Image"
-                        class="object-cover w-full h-full rounded-lg" />
+                    <img src="/images/review.png" alt="Ride Image" class="object-cover w-full h-full rounded-lg" />
                 </div>
 
                 <div class="flex justify-between items-center border-b border-gray-100 pb-3">
@@ -542,15 +541,15 @@
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-500">For</span>
-                        <span class="font-semibold text-gray-800">Delivery</span>
+                        <span id="delivery-for" class="font-semibold text-gray-800">Delivery</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-500">From</span>
-                        <span class="font-semibold text-gray-800">Poano, Bekwai</span>
+                        <span id="delivery-from" class="font-semibold text-gray-800">Poano, Bekwai</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-500">To</span>
-                        <span class="font-semibold text-gray-800">Poano, Bekwai</span>
+                        <span id="delivery-to" class="font-semibold text-gray-800">Poano, Bekwai</span>
                     </div>
                 </div>
 
@@ -558,6 +557,11 @@
                     <span class="text-xl font-bold text-gray-900  text-red-500">Price</span>
                     <span class="text-xl font-extrabold text-custom-orange">GHC 500</span>
                 </div>
+
+                <button id="continue-btn-5"
+                    class="w-full py-4 text-lg font-semibold rounded-full bg-primary text-white mt-8 shadow-md">
+                    Continue to Payment
+                </button>
             </section>
 
 
@@ -565,11 +569,17 @@
     </div>
 </body>
 
-<!-- JavaScript for Flow and State Management -->
 <script>
     let currentStep = 1;
     const totalScreens = 5;
     let selectedService = null;
+
+    let deliveryInfo = {
+        speed: null,
+        item: null,
+        pickupLocation: null,
+        dropoffLocation: null,
+    };
 
     document.addEventListener('DOMContentLoaded', () => {
         setupSelectionListeners();
@@ -718,12 +728,41 @@
         if (currentStep === step) return;
 
         currentStep = step;
+        if (currentStep === 2 && selectedService === 'ride') {
+            document.getElementById('ride-pickup-location').focus();
+            document.getElementById('ride-details-screen').classList.remove('invisible');
+        } else {
+            document.getElementById('ride-details-screen').classList.contains('invisible') ? null : document.getElementById('ride-details-screen').classList.add('invisible');
+        }
+
+        if (currentStep === 3 && selectedService === 'delivery') {
+            document.getElementById('delivery-speed-screen').classList.remove('invisible');
+        } else {
+            document.getElementById('delivery-speed-screen').classList.contains('invisible') ? null : document.getElementById('delivery-speed-screen').classList.add('invisible');
+        }
+
+        if (currentStep === 4 && selectedService === 'delivery') {
+            document.getElementById('what-are-you-sending-screen').classList.remove('invisible');
+        } else {
+            document.getElementById('what-are-you-sending-screen').classList.contains('invisible') ? null : document.getElementById('what-are-you-sending-screen').classList.add('invisible');
+        }
+
+        if (currentStep === 5) {
+            document.getElementById('location-selection-screen').classList.remove('invisible');
+        } else {
+            document.getElementById('location-selection-screen').classList.contains('invisible') ? null : document.getElementById('location-selection-screen').classList.add('invisible');
+        }
+
+
+        if (currentStep === 6) {
+            updateDeliveryInfo();
+        }
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         updateUI(true);
     }
 
-    function updateUI(animate = true) {
+    function updateUI(animate = false) {
         const wrapper = document.getElementById('flow-wrapper');
         if (!wrapper) return;
 
@@ -744,7 +783,6 @@
                 btn.style.display = currentStep > 1 ? 'flex' : 'none';
                 btn.onclick = (e) => {
                     e.preventDefault();
-                    // Smart back navigation based on service type
                     if (currentStep === 2 && selectedService === 'ride') {
                         navigate(1); // Ride details back to service selection
                     } else if (currentStep === 3 && selectedService === 'delivery') {
@@ -764,6 +802,14 @@
             }
         });
     }
+
+    function updateDeliveryInfo() {
+        document.getElementById('delivery-for').textContent = selectedService === 'ride' ? 'Ride' : 'Delivery';
+        document.getElementById('delivery-from').textContent = document.getElementById(selectedService === 'ride' ? 'ride-pickup-location' : 'delivery-pickup-location').value;
+        document.getElementById('delivery-to').textContent = document.getElementById(selectedService === 'ride' ? 'ride-dropoff-location' : 'delivery-dropoff-location').value;
+    }
+
+
 </script>
 
 </html>
