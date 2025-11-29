@@ -195,14 +195,7 @@
 
 
 
-                <!-- CTA Button -->
-                <div class="md:w-full md:max-w-5xl md:mt-12">
-                    <button id="continue-btn-1"
-                        class="w-full py-4 text-white text-lg font-semibold rounded-full btn-disabled mt-8 md:mt-0 shadow-md md:py-6 md:text-xl"
-                        disabled>
-                        Continue
-                    </button>
-                </div>
+
             </section>
 
             <!-- --- Screen 2: Ride Details Screen --- -->
@@ -622,13 +615,7 @@
         }
 
         // Attach listeners to Continue buttons with branching logic
-        document.getElementById('continue-btn-1').addEventListener('click', () => {
-            if (selectedService === 'ride') {
-                navigate(2); // Go to ride details (screen 2)
-            } else if (selectedService === 'delivery') {
-                navigate(3); // Go to delivery options (screen 3)
-            }
-        });
+
 
         document.getElementById('continue-btn-2').addEventListener('click', () => navigate(6)); // Ride -> Final Location
         document.getElementById('continue-btn-3').addEventListener('click', () => navigate(4)); // Delivery -> Item Selection
@@ -671,14 +658,14 @@
             deliveryCard.classList.add('selected');
             rideCard.classList.remove('selected');
             selectedService = 'delivery';
-            checkButtonState(1, true);
+            navigate(3); // Go to delivery options (screen 3)
         });
 
         rideCard.addEventListener('click', () => {
             rideCard.classList.add('selected');
             deliveryCard.classList.remove('selected');
             selectedService = 'ride';
-            checkButtonState(1, true);
+            navigate(2); // Go to ride details (screen 2)
         });
 
         // Screen 3: Delivery Speed
